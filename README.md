@@ -18,5 +18,5 @@ $ docker run -it -v <HOST DIR>:<GUEST DIR> sample_java8:latest /bin/bash
 ### Build Java Project
 
 ```
-$ docker exec -it <CONTAINER ID> mvn build
+$ docker exec -it <CONTAINER ID> mvn test
 ```
