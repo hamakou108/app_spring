@@ -12,7 +12,7 @@ $ docker build -t sample_java8 .
 ### Create Container
 
 ```
-$ docker run -it -v <HOST DIR>:<GUEST DIR> sample_java8:latest /bin/bash
+$ docker run -dit -v <HOST DIR>:<GUEST DIR> sample_java8:latest /bin/bash
 ```
 
 ### Build Java Project
