@@ -14,4 +14,4 @@ RUN cp settings.xml /usr/share/maven/conf
 # additional maven commands
 #RUN mvn clean install
 
-CMD ["mvn", "--version"]
+CMD ["/bin/bash"]
