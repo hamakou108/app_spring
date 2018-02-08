@@ -1,0 +1,23 @@
+version: '3'
+services:
+  tomcat:
+    container_name: sample_tomcat
+    image: tomcat:8-jre8
+    ports:
+      - "8888:8080"
+      - "8009:8009"
+    env_file:
+      - "commons.env"
+    restart: always
+  httpd:
+    container_name: sample_httpd
+    image: httpd:2
+    ports:
+      - "8080:80"
+    env_file:
+      - "commons.env"
+    volumes:
+      - ./httpd/apache2:/usr/local/apache2
+    links:
+      - tomcat
+    restart: always
