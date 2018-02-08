@@ -1,12 +1,14 @@
-target/
-pom.xml.tag
-pom.xml.releaseBackup
-pom.xml.versionsBackup
-pom.xml.next
-release.properties
-dependency-reduced-pom.xml
-buildNumber.properties
-.mvn/timing.properties
+app/app/target/
+app/app/pom.xml.tag
+app/app/pom.xml.releaseBackup
+app/app/pom.xml.versionsBackup
+app/app/pom.xml.next
+app/app/release.properties
+app/app/dependency-reduced-pom.xml
+app/app/buildNumber.properties
+app/app/.mvn/timing.properties
+
+httpd/apache2/logs/
 
 # Avoid ignoring Maven wrapper jar file (.jar files are usually ignored)
 !/.mvn/wrapper/maven-wrapper.jar

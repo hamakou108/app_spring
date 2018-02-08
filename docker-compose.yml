@@ -1,5 +1,13 @@
 version: '3'
 services:
+  app:
+    container_name: sample_app
+    build: ./app
+    volumes:
+      - ./app:/opt/app
+      - ./conf:/usr/share/maven/conf
+    stdin_open: true
+    tty: true
   tomcat:
     container_name: sample_tomcat
     image: tomcat:8-jre8
