@@ -1,4 +1,4 @@
-version: '3'
+version: '2'
 services:
   app:
     container_name: sample_app
@@ -8,24 +8,45 @@ services:
       - ./conf:/usr/share/maven/conf
     stdin_open: true
     tty: true
+    networks:
+      sample:
+        ipv4_address: 172.28.5.2
   tomcat:
     container_name: sample_tomcat
-    image: tomcat:8-jre8
-    ports:
-      - "8888:8080"
-      - "8009:8009"
+    build: ./tomcat
     env_file:
       - "commons.env"
+    #volume:
+    #  -
     restart: always
+    ports:
+      - "8080:8080"
+      - "8009:8009"
+    networks:
+      sample:
+        ipv4_address: 172.28.5.4
   httpd:
     container_name: sample_httpd
-    image: httpd:2
-    ports:
-      - "8080:80"
+    build: ./httpd
     env_file:
       - "commons.env"
-    volumes:
-      - ./httpd/apache2:/usr/local/apache2
-    links:
-      - tomcat
     restart: always
+    #volume:
+    #  -
+    ports:
+      - "10080:80"
+    networks:
+      sample:
+        ipv4_address: 172.28.5.5
+    links:
+      - tomcat:tomcat
+
+networks:
+  sample:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.28.0.0/16
+          ip_range: 172.28.5.0/24
+          gate_way: 172.28.5.1
