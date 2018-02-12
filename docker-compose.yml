@@ -4,8 +4,7 @@ services:
     container_name: sample_app
     build: ./app
     volumes:
-      - ./app:/opt/app
-      - ./conf:/usr/share/maven/conf
+      - ./app/app:/opt/app
     stdin_open: true
     tty: true
     networks:

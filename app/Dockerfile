@@ -5,11 +5,8 @@ LABEL maintainer="hamakou108 <kosuke1602177mteitm19@gmail.com>"
 RUN mkdir /opt/app
 WORKDIR /opt/app
 
-# copy source files
-#COPY ./app/ ./
-
-# copy customized "settings.xml"
-#RUN cp ./settings.xml /usr/share/maven/conf
+# copy setting files
+COPY ./conf /usr/share/maven/conf
 
 # additional maven commands
 #RUN mvn clean install
