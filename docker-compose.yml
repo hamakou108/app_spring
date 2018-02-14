@@ -1,18 +1,25 @@
 version: '2'
 services:
-  app:
-    container_name: sample_app
-    build: ./app
-    volumes:
-      - ./app/app:/opt/app
-    stdin_open: true
-    tty: true
+  web:
+    container_name: sample_web
+    image: sample/web
+    build: web
+    env_file:
+      - "commons.env"
+    restart: always
+    #volume:
+    #  -
+    ports:
+      - "10080:80"
     networks:
       sample:
         ipv4_address: 172.28.5.2
-  tomcat:
-    container_name: sample_tomcat
-    build: ./tomcat
+    links:
+      - app:tomcat
+  #rdb:
+  app:
+    container_name: sample_app
+    build: app
     env_file:
       - "commons.env"
     #volume:
@@ -24,21 +31,17 @@ services:
     networks:
       sample:
         ipv4_address: 172.28.5.4
-  httpd:
-    container_name: sample_httpd
-    build: ./httpd
-    env_file:
-      - "commons.env"
-    restart: always
-    #volume:
-    #  -
-    ports:
-      - "10080:80"
+  #batch:
+  maven:
+    container_name: sample_maven
+    build: maven
+    volumes:
+      - ./maven/app:/opt/app
+    stdin_open: true
+    tty: true
     networks:
       sample:
-        ipv4_address: 172.28.5.5
-    links:
-      - tomcat:tomcat
+        ipv4_address: 172.28.5.6
 
 networks:
   sample:
