@@ -2,15 +2,15 @@ version: '2'
 services:
   web:
     container_name: sample_web
-    image: sample/web
     build: web
+    image: sample/web
     env_file:
       - "commons.env"
+    ports:
+      - "10080:80"
     restart: always
     #volume:
     #  -
-    ports:
-      - "10080:80"
     networks:
       sample:
         ipv4_address: 172.28.5.2
@@ -20,14 +20,15 @@ services:
   app:
     container_name: sample_app
     build: app
+    image: sample/app
     env_file:
       - "commons.env"
-    #volume:
-    #  -
-    restart: always
     ports:
       - "8080:8080"
       - "8009:8009"
+    restart: always
+    #volume:
+    #  -
     networks:
       sample:
         ipv4_address: 172.28.5.4
@@ -35,10 +36,11 @@ services:
   maven:
     container_name: sample_maven
     build: maven
-    volumes:
-      - ./maven/app:/opt/app
+    image: sample/app
     stdin_open: true
     tty: true
+    volumes:
+      - ./maven/app:/opt/app
     networks:
       sample:
         ipv4_address: 172.28.5.6
