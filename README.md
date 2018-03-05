@@ -1,22 +1,23 @@
 # sample_java8
+
 sample project of Java
 
 ## Usage
 
-### Create Image
+### Run containers
 
 ```
-$ docker build -t sample_java8 .
+$ docker-compose up -d
 ```
 
-### Create Container
+### Remove Container
 
 ```
-$ docker run -dit -v <HOST DIR>:<GUEST DIR> sample_java8:latest /bin/bash
+$ docker-compose down
 ```
 
 ### Build Java Project
 
 ```
-$ docker exec -it <CONTAINER ID> mvn test
+$ docker exec sample_maven mvn test
 ```
