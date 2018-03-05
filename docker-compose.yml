@@ -20,8 +20,6 @@ services:
     ports:
       - "10080:80"
     restart: always
-    #volume:
-    #  -
     networks:
       sample:
         ipv4_address: 172.28.5.2
@@ -38,8 +36,6 @@ services:
       - "8080:8080"
       - "8009:8009"
     restart: always
-    #volume:
-    #  -
     networks:
       sample:
         ipv4_address: 172.28.5.4
@@ -50,6 +46,8 @@ services:
     image: sample/app
     stdin_open: true
     tty: true
+    env_file:
+      - "commons.env"
     volumes:
       - ./maven/app:/opt/app
     networks:
