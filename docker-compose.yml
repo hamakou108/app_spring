@@ -20,6 +20,8 @@ services:
     ports:
       - "10080:80"
     restart: always
+    volumes:
+      - ./web/cgi-bin:/usr/local/apache2/cgi-bin
     networks:
       sample:
         ipv4_address: 172.28.5.2
