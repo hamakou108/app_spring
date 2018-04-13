@@ -15,9 +15,3 @@ $ docker-compose up -d
 ```
 $ docker-compose down
 ```
-
-### Build Java Project
-
-```
-$ docker exec sample_maven mvn test
-```
